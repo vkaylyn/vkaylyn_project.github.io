@@ -4,7 +4,7 @@
 
 ### Regression
 
-[Project 1 Title](/sample_page)
+[Project 1 Title](https://github.com/vkaylyn/vkaylyn.github.io/blob/main/Cars.html)
 <img src="images/dummy_thumbnail.jpg?raw=true"/>
 
 ---
