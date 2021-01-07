@@ -6,7 +6,7 @@
 
 [Project 1 Title]
 
-(https://github.com/vkaylyn/vkaylyn.github.io/blob/main/Cars.html)
+https://github.com/vkaylyn/vkaylyn.github.io/blob/main/Cars.ipynb
 
 <img src="images/dummy_thumbnail.jpg?raw=true"/>
 
