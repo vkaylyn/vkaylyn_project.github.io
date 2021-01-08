@@ -1,10 +1,10 @@
-## Portfolio
+# Portfolio
 
 ---
 
 ### Regression
 
-[Project 1 Title]
+#### Predicting Used Car Prices with Machine Learning Techniques
 
 Summary of the project
 
