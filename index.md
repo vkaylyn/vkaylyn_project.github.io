@@ -14,8 +14,13 @@ Summary of the project
 
 
 ---
-[Project 2 Title](/pdf/sample_presentation.pdf)
-<img src="images/dummy_thumbnail.jpg?raw=true"/>
+#### House
+
+Summary of project
+
+
+[![](https://img.shields.io/badge/GitHub-View_on_GitHub-EE4C2C?logo=GitHub)](https://github.com/vkaylyn/vkaylyn.github.io/blob/main/regression.ipynb)
+
 
 ---
 [Project 3 Title](http://example.com/)
