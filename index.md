@@ -19,7 +19,7 @@ Summary of the project
 Summary of project
 
 
-[![](https://img.shields.io/badge/GitHub-View_on_GitHub-EE4C2C?logo=GitHub)](https://github.com/vkaylyn/vkaylyn.github.io/blob/main/regression.ipynb)
+[![](https://img.shields.io/badge/GitHub-View_on_GitHub-EE4C2C?logo=GitHub)](https://nbviewer.jupyter.org/github/vkaylyn/vkaylyn.github.io/blob/main/regression.ipynb)
 
 
 ---
