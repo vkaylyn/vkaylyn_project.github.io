@@ -8,7 +8,7 @@
 
 Summary of the project
 
-[![Made with Jupyter](https://img.shields.io/badge/Made%20with-Jupyter-orange?style=for-the-badge&logo=Jupyter)](https://nbviewer.jupyter.org/github/vkaylyn/vkaylyn.github.io/blob/main/Cars.ipynb)
+[![Made with Jupyter](https://img.shields.io/badge/Madewith-Jupyter-orange?style=for-the-badge&logo=Jupyter)](https://nbviewer.jupyter.org/github/vkaylyn/vkaylyn.github.io/blob/main/Cars.ipynb)
 
 
 
