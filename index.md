@@ -15,7 +15,9 @@ Summary of the project
 ---
 #### House
 
-Summary of project
+<img src="images/regression.jpg?raw=true"/>
+
+##### Summary of project
 
 
 [![Made with Jupyter](https://img.shields.io/badge/Made%20with-Jupyter-orange?style=for-the-badge&logo=Jupyter)](https://nbviewer.jupyter.org/github/vkaylyn/vkaylyn.github.io/blob/main/regression.ipynb)
@@ -25,7 +27,7 @@ Summary of project
 ### Multivariate Data Analysis
 
 [Project 1 Title](/sample_page)
-<img src="images/dummy_thumbnail.jpg?raw=true"/>
+
 
 
 ---
