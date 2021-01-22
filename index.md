@@ -28,6 +28,8 @@
 
 ### Multivariate Data Analysis
 
+<img src="images/PCA.png?raw=true"/>
+
 Summary of project
 
 [![Made with R](https://img.shields.io/badge/Made%20with-R-blue?style=for-the-badge&logo=R)](http://htmlpreview.github.io/?https://github.com/vkaylyn/vkaylyn.github.io/blob/main/Deposits.html)
