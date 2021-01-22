@@ -6,7 +6,7 @@
 
 #### Predicting Used Car Prices with Machine Learning Techniques
 
-Summary of the project
+##### Summary of project
 
 [![Made with Jupyter](https://img.shields.io/badge/Made%20with-Jupyter-orange?style=for-the-badge&logo=Jupyter)](https://nbviewer.jupyter.org/github/vkaylyn/vkaylyn.github.io/blob/main/Cars.ipynb)
 
@@ -25,9 +25,13 @@ Credit: dreamtime.com
 
 ---
 
+
+
 ### Multivariate Data Analysis
 
-[Project 1 Title](/sample_page)
+Summary of project
+
+[![Made with R](https://img.shields.io/badge/Made%20with-R-blue?style=for-the-badge&logo=R)](http://htmlpreview.github.io/?https://github.com/vkaylyn/vkaylyn.github.io/blob/main/Deposits.html)
 
 
 
@@ -39,7 +43,7 @@ Credit: dreamtime.com
 [![Made with R](https://img.shields.io/badge/Made%20with-R-blue?style=for-the-badge&logo=R)](http://htmlpreview.github.io/?https://github.com/vkaylyn/vkaylyn.github.io/blob/main/Deposits.html)
 ---
 
----
+
 
 
 
