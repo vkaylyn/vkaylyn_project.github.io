@@ -15,6 +15,8 @@
 ---
 #### House
 
+<img src="images/housesbanner.png?raw=true"/>
+
 ##### Summary of project
 
 
