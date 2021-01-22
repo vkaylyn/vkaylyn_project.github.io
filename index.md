@@ -58,7 +58,8 @@ Summary of project
 
 ### Time Series
 
-[![Made with R](https://img.shields.io/badge/Made%20with-Jupyter-grey?style=for-the-badge&logo=R)]http://htmlpreview.github.io/?https://github.com/vkaylyn/vkaylyn.github.io/blob/main/Deposits.html
+[![Made with R](https://img.shields.io/badge/Made%20with-Jupyter-grey?style=for-the-badge&logo=R)]
+(http://htmlpreview.github.io/?https://github.com/vkaylyn/vkaylyn.github.io/blob/main/Deposits.html)
 ---
 [Project 2 Title](/pdf/sample_presentation.pdf)
 <img src="images/dummy_thumbnail.jpg?raw=true"/>
