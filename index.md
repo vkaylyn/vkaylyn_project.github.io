@@ -16,6 +16,7 @@ Summary of the project
 #### House
 
 <img src="images/regression.jpg?raw=true"/>
+Credit: Dreamtime.com
 
 ##### Summary of project
 
