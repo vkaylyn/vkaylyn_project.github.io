@@ -45,7 +45,7 @@
 ### Time Series
 
 
-[![Made with R](https://img.shields.io/badge/Made%20with-R-blue?style=for-the-badge&logo=R)](http://htmlpreview.github.io/?https://github.com/vkaylyn/vkaylyn.github.io/blob/main/Deposits.html)
+[![Made with R](https://img.shields.io/badge/Made%20with-R-blue?style=for-the-badge&logo=R)](http://htmlpreview.github.io/?https://github.com/vkaylyn/vkaylyn.github.io/blob/main/projects/Deposits.html)
 ---
 
 ### Miscellaneous Projects
