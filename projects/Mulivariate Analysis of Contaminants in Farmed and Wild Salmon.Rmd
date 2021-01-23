@@ -1,0 +1,366 @@
+---
+title: "Multivariate Analysis of Contaminants in Farmed and Wild Salmon"
+author: "Kaylyn Vo"
+date: "Fall, 2020"
+output:
+  html_document:
+    toc: true
+    toc_depth: 5
+    theme: united
+---
+
+
+
+# 1. Libraries
+
+```{r}
+library('dplyr')
+library('car')
+library('onewaytests')
+```
+
+# 2. Data
+
+```{r}
+feed = read.table('R_FEED.csv',header = TRUE,sep=',',stringsAsFactors = FALSE)
+farmed = read.table('R_FARMED.csv',header = TRUE,sep=',',stringsAsFactors = FALSE)
+wild = read.table('R_WILD.csv',header = TRUE,sep=',',stringsAsFactors = FALSE)
+supermarket = read.table('R_SUPERMARKET.csv',header = TRUE,sep=',',stringsAsFactors = FALSE)
+```
+
+```{r,echo=FALSE}
+
+col_names = c("Dieldrin","Total.Toxaphene.Equivalvents","DIOXIN.TEQ.1","TOTAL.PCBs","TOTAL.OMEGA.6.FATTY.ACIDS","TOTAL.OMEGA.3.FATTY.ACIDS","PERCENT.LIPID")
+
+names <- c('Dieldrin','Toxaphene','Dioxin','PCBs','Omega-6','Omega-3',"%Lipid")
+
+######### OBSERVATION 153 IN THE FARMED FILE DID NOT MEET QA/QS, SO WE DROP THIS OBSERVATION 
+farmed =farmed[-153,]
+
+fish_type <- matrix(rep(c('WILD','FARMED','FARMED'),c(45,48,152)))
+
+c_salmon <- cbind(fish_type,rbind(wild[,c('LOCATION',col_names)],supermarket[,c('LOCATION',col_names)],farmed[,c('LOCATION',col_names)]))
+```
+
+
+# 3. Helper Functions
+```{r}
+calc_cor <- function(X)
+{
+  corr <- cor(X)
+  colnames(corr) <- names
+  rownames(corr) <- names
+  corr <- round(corr,3)
+  return(corr)
+}
+##### Function to calculate variance
+
+calc_var <- function(X)
+{
+  S <- var(X)
+  colnames(S) <- names
+  rownames(S) <- names
+  S <- round(S,3)
+  return(S)
+}
+
+### Function to calculate Normality plot
+plot_norm <- function(X,toxin_name)
+{
+  title_ = paste('Normal Q-Q Plot for',toxin_name, sep=" ")
+  qqnorm(X,main = title_)
+  qqline(X)
+}
+
+### Function to calculate the chi-square plot
+plot_chisq <- function(X)
+{
+  x_bar <- as.matrix(colMeans(X))
+  S <- var(X)
+  n <- nrow(X)
+  p <- ncol(X)
+  # Then, calculate all Mahalanobis distances
+  d <- sapply(1:n, function(k) (t(as.matrix(X[k,]) - x_bar) %*% solve(S) %*%(X[k,] - x_bar)))
+  q <- qchisq((1:n-0.5)/n,p)
+  qqplot(q,d,xlab = "Chi-square Quantiles", ylab = "Sample Statistical Distances", main = "Chi-square Probability Plot")
+  lines(q,q)
+  
+}
+
+### Function to tranform data
+
+X_transform <- function(X,tranform_vars,o_vars)
+{
+  t_X <- cbind(log(X[,tranform_vars]),X[,o_vars])
+  return(t_X)
+}
+
+
+calc_CIs <- function(S,d,c,p)
+{
+  mean_CIs = matrix(0, nrow = p, ncol = 2)
+  colnames(mean_CIs) <- c('Lower CI','Upper CI')
+  rownames(mean_CIs) <- names
+  
+  for (i in 1:p)
+  {
+    mean_CIs[i,1] = d[i] - sqrt(c) * sqrt(S[i,i])
+    mean_CIs[i,2] = d[i] + sqrt(c) * sqrt(S[i,i])
+  }
+  
+  mean_CIs <- round(mean_CIs,3)
+  return(mean_CIs)
+  
+}
+####### Function to combine data
+combine_df <- function(farmed_filt,supermarket_filt)
+{
+  df = as.matrix(sapply(rbind(farmed[farmed_filt,col_names],supermarket[supermarket_filt,col_names]),as.numeric))
+  return(df)
+}
+```
+
+```{r,echo=FALSE}
+f = c_salmon$fish_type=='FARMED'
+
+f_X = as.matrix(sapply(c_salmon[f,col_names],as.numeric))
+w_X = as.matrix(sapply(c_salmon[!f,col_names],as.numeric))
+
+t_vars = c("Dieldrin","Total.Toxaphene.Equivalvents","DIOXIN.TEQ.1","TOTAL.PCBs","TOTAL.OMEGA.6.FATTY.ACIDS")
+o_vars = c("TOTAL.OMEGA.3.FATTY.ACIDS","PERCENT.LIPID")
+
+
+t_farmed <- X_transform(f_X,t_vars,o_vars)
+t_wild <- X_transform(w_X,t_vars,o_vars)
+```
+
+# 4. Principal Component Analysis
+
+```{r}
+salmon = as.matrix(sapply(c_salmon[,col_names],as.numeric))
+colnames(salmon) <- names
+pc_salmon <- prcomp(salmon,scale = TRUE)
+```
+
+## 4.A. Cumulative Total Sample Variance
+
+```{r}
+(cumvar <- cumsum(pc_salmon$sdev^2)/sum(pc_salmon$sdev^2))
+```
+
+## 4.B. Sample Proportion of Total Variance
+
+```{r}
+propvar <- pc_salmon$sdev^2/sum(pc_salmon$sdev^2)
+```
+
+# 5. Comparisons of Contaminants between Wild and Farmed Salmon
+
+## 5.A. Normality Assumption 
+
+### 5.A.1 Farmed Salmon
+
+```{r, fig.show="hold",out.width="90%"}
+par(mar = c(5.1, 4.1, 4.1, 2.1))
+par(mfrow = c(1, 2))
+plot_norm(t_farmed[,'Dieldrin'],'Log Dieldrin')
+plot_norm(t_farmed[,'Total.Toxaphene.Equivalvents'],'Log Toxaphene')
+plot_norm(t_farmed[,'DIOXIN.TEQ.1'],'Log Dioxin')
+plot_norm(t_farmed[,'TOTAL.PCBs'],'Log PCBs')
+plot_norm(t_farmed[,'TOTAL.OMEGA.6.FATTY.ACIDS'],'Log Omega-6')
+plot_norm(t_farmed[,'TOTAL.OMEGA.3.FATTY.ACIDS'],'Omega-3')
+plot_norm(t_farmed[,'PERCENT.LIPID'],'Lipid Pct.')
+plot_chisq(t_farmed)
+
+```
+
+### 5.A.2 Wild Salmon
+```{r, fig.show="hold",out.width="90%"}
+par(mar = c(5.1, 4.1, 4.1, 2.1))
+par(mfrow = c(1, 2))
+plot_norm(t_wild[,'Dieldrin'],'Log Dieldrin')
+plot_norm(t_wild[,'Total.Toxaphene.Equivalvents'],'Log Toxaphene')
+plot_norm(t_wild[,'DIOXIN.TEQ.1'],'Log Dioxin')
+plot_norm(t_wild[,'TOTAL.PCBs'],'Log PCBs')
+plot_norm(t_wild[,'TOTAL.OMEGA.6.FATTY.ACIDS'],'Log Omega-6')
+plot_norm(t_wild[,'TOTAL.OMEGA.3.FATTY.ACIDS'],'Omega-3')
+plot_norm(t_wild[,'PERCENT.LIPID'],'Lipid Pct.')
+plot_chisq(t_wild)
+```
+
+
+## 5.B. Sample Variance
+
+### 5.B.1. Farmed Salmon
+
+```{r,echo=FALSE}
+
+calc_var(t_farmed)
+
+```
+
+### 5.B.2. Wild Salmon 
+```{r,echo=FALSE}
+
+calc_var(t_wild)
+
+```
+
+## 5.C. Test Statistics
+
+```{r,echo=FALSE}
+n1 = nrow(t_wild)      
+n2 = nrow(t_farmed)     
+p=ncol(t_farmed) 
+
+farmed_variance <- calc_var(t_farmed)
+wild_variance <- calc_var(t_wild)
+
+xbar_farmed = as.matrix(colMeans(t_farmed))
+xbar_wild = as.matrix(colMeans(t_wild))
+
+mean_diff = xbar_farmed - xbar_wild
+
+combine_Var <- (1/n1)*wild_variance + (1/n2)*farmed_variance
+
+T_squared <- t(mean_diff) %*% solve(combine_Var) %*% (mean_diff)
+c = qchisq(0.95,p)
+T_squared
+
+```
+## 5.D. Confidence Intervals
+
+```{r,echo=FALSE}
+calc_CIs(combine_Var,mean_diff,c,p)
+```
+
+# 6. Comparisons of Contaminants between Europe and North America 
+
+```{r,echo=FALSE}
+Europe <- (farmed$LOCATION =="Scotland") | (farmed$LOCATION== 'Norway') | (farmed$LOCATION== "Faroe Islands")
+North_America <- (farmed$LOCATION == "Western Canada") | (farmed$LOCATION=='Washington') |
+  (farmed$LOCATION =='Maine') | (farmed$LOCATION =="Eastern Canada") 
+South_America <- (farmed$LOCATION == 'Chile')  
+
+supermarket$LOCATION <- trimws(supermarket$LOCATION)
+
+d = (supermarket$LOCATION == "Norway" | supermarket$LOCATION == "Scotland"| supermarket$LOCATION == 'Germany'| supermarket$LOCATION == "Iceland")
+
+f = (supermarket$LOCATION == 'Maine' | supermarket$LOCATION == 'Eastern Canada'|supermarket$LOCATION == 'N.E. Atlantic'|supermarket$LOCATION == "American Atlantic"| 
+       supermarket$LOCATION =="Atlantic" |supermarket$LOCATION =="Western Canada"|supermarket$LOCATION == "Washington" | supermarket$LOCATION =='BC')
+g = (supermarket$LOCATION == "Chile")  
+
+
+## Check if we have the right number of observations
+#sum(d) + sum(Europe) # 81
+#sum(f) + sum(North_America) # 73
+#sum(g) + sum(South_America) # 35
+
+### Europe
+df_E = combine_df(Europe,d)
+
+### North America
+
+df_NAM = combine_df(North_America,f)
+
+### South America
+
+df_SAM = combine_df(South_America,g)
+
+t_Europe<- X_transform(df_E,t_vars,o_vars)
+t_NAM <- X_transform(df_NAM,t_vars,o_vars)
+t_SAM <- X_transform(df_SAM,t_vars,o_vars)
+
+```
+
+## 6.A. Normality Assumption 
+
+### 6.A.1 Europe
+
+
+```{r, fig.show="hold",out.width="90%"}
+par(mar = c(5.1, 4.1, 4.1, 2.1))
+par(mfrow = c(1, 2))
+plot_norm(t_Europe[,'Dieldrin'],'Log Dieldrin')
+plot_norm(t_Europe[,'Total.Toxaphene.Equivalvents'],'Log Toxaphene')
+plot_norm(t_Europe[,'DIOXIN.TEQ.1'],'Log Dioxin')
+plot_norm(t_Europe[,'TOTAL.PCBs'],'Log PCBs')
+plot_norm(t_Europe[,'TOTAL.OMEGA.6.FATTY.ACIDS'],'Log Omega-6')
+plot_norm(t_Europe[,'TOTAL.OMEGA.3.FATTY.ACIDS'],' Omega-3')
+plot_norm(t_Europe[,'PERCENT.LIPID'],'Lipid Pct.')
+plot_chisq(t_Europe)
+```
+
+### 6.A.2 North America
+
+```{r,fig.show="hold",out.width="90%"}
+par(mar = c(5.1, 4.1, 4.1, 2.1))
+par(mfrow = c(1, 2))
+plot_norm(t_NAM[,'Dieldrin'],'Log Dieldrin')
+plot_norm(t_NAM[,'Total.Toxaphene.Equivalvents'],'Log Toxaphene')
+plot_norm(t_NAM[,'DIOXIN.TEQ.1'],'Log Dioxin')
+plot_norm(t_NAM[,'TOTAL.PCBs'],'Log PCBs')
+plot_norm(t_NAM[,'TOTAL.OMEGA.6.FATTY.ACIDS'],'Log Omega-6')
+plot_norm(t_NAM[,'TOTAL.OMEGA.3.FATTY.ACIDS'],'Omega-3')
+plot_norm(t_NAM[,'PERCENT.LIPID'],'Lipid Pct.')
+plot_chisq(t_NAM)
+```
+
+### 6.A.3 South America
+```{r,fig.show="hold",out.width="90%"}
+par(mar = c(5.1, 4.1, 4.1, 2.1))
+par(mfrow = c(1, 2))
+plot_norm(t_SAM[,'Dieldrin'],'Log Dieldrin')
+plot_norm(t_SAM[,'Total.Toxaphene.Equivalvents'],'Log Toxaphene')
+plot_norm(t_SAM[,'DIOXIN.TEQ.1'],'Log Dioxin')
+plot_norm(t_SAM[,'TOTAL.PCBs'],'Log PCBs')
+plot_norm(t_SAM[,'TOTAL.OMEGA.6.FATTY.ACIDS'],'Log Omega-6')
+plot_norm(t_SAM[,'TOTAL.OMEGA.3.FATTY.ACIDS'],'Omega-3')
+plot_norm(t_SAM[,'PERCENT.LIPID'],'Lipid Pct.')
+plot_chisq(t_SAM)
+
+```
+
+## 6.B. Sample Variance
+
+### 6.B.1 Europe
+```{r,echo=FALSE}
+(S_eu <- calc_var(t_Europe))
+
+```
+
+
+### 6.B.2 North America
+```{r,echo=FALSE}
+(S_nam <- calc_var(t_NAM))
+```
+
+
+### 6.B.3 South America
+```{r,echo=FALSE}
+(S_sam <- calc_var(t_SAM))
+```
+
+## 6.C. Test Statistics
+```{r,echo=FALSE}
+xbar_eu = as.matrix(colMeans(t_Europe))
+xbar_nam = as.matrix(colMeans(t_NAM))
+
+N_eu <- nrow(t_Europe)
+N_nam <- nrow(t_NAM)
+
+mean_diff <- xbar_eu - xbar_nam
+
+c_S <- ((1/N_eu) * S_eu) + ((1/N_nam)*S_nam)
+
+(T_squared <- t(mean_diff) %*% solve(c_S) %*% (mean_diff))
+
+c = qchisq(0.95,p)
+p = 7
+```
+
+## 6.D Confidence Intervals
+
+```{r,echo=FALSE}
+calc_CIs(c_S,mean_diff,c,p)
+```
