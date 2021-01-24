@@ -4,19 +4,16 @@
 
 ### Regression
 
-#### Predicting Cars Prices
+#### 1. Predicting Cars Prices
 
-##### Summary of project
 
 [![Made with Jupyter](https://img.shields.io/badge/Made%20with-Jupyter-orange?style=for-the-badge&logo=Jupyter)](https://nbviewer.jupyter.org/github/vkaylyn/vkaylyn.github.io/blob/main/Cars.ipynb)
 
 
 ---
-#### Predicting House Prices with Machine Learning Techniques
+#### 2. Predicting House Prices with Machine Learning Techniques
 
 <img src="images/housesbanner.png?raw=true"/>
-
-##### Summary of project
 
 
 [![Made with Jupyter](https://img.shields.io/badge/Made%20with-Jupyter-orange?style=for-the-badge&logo=Jupyter)](https://nbviewer.jupyter.org/github/vkaylyn/vkaylyn.github.io/blob/main/regression.ipynb)
@@ -27,7 +24,7 @@
 
 ### Multivariate Data Analysis
 
-#### Multivariate Analysis of Contaminants in Farmed and Wild Salmon
+#### 1. Multivariate Analysis of Contaminants in Farmed and Wild Salmon
 
 <img src="images/PCA.png?raw=true"/>
 
@@ -45,7 +42,7 @@
 
 ### Time Series
 
-##### Using Time Series to Indirectly Predict Weather Patterns
+#### 1. Using Time Series to Indirectly Predict Weather Patterns
 
 [![Made with R](https://img.shields.io/badge/Made%20with-R-blue?style=for-the-badge&logo=R)](http://htmlpreview.github.io/?https://github.com/vkaylyn/vkaylyn.github.io/blob/main/projects/Deposits.html)
 
@@ -53,8 +50,8 @@
 
 ### Miscellaneous Projects
 
-#### DATA SCIENCE FOR GOOD: PASSNYC
-##### Help PASSNYC Determine Which Schools Need Their Services The Most
+#### 1. DATA SCIENCE FOR GOOD: PASSNYC
+#### Help PASSNYC Determine Which Schools Need Their Services The Most
 
 <img src="images/nyc.jpg?raw=true"/>
 Credit: dreamtime.com
