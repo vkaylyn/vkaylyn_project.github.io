@@ -54,9 +54,9 @@
 #### Help PASSNYC Determine Which Schools Need Their Services The Most
 
 <img src="images/nyc.jpg?raw=true"/>
-Credit: dreamtime.com
+Credit: wallpapercave.com
 
-[![Made with Jupyter](https://img.shields.io/badge/Made%20with-Jupyter-orange?style=for-the-badge&logo=Jupyter)](https://nbviewer.jupyter.org/github/vkaylyn/vkaylyn.github.io/blob/main/regression.ipynb)
+[![Made with Jupyter](https://img.shields.io/badge/Made%20with-Jupyter-orange?style=for-the-badge&logo=Jupyter)](http://htmlpreview.github.io/?https://github.com/vkaylyn/vkaylyn.github.io/blob/main/projects/school.html)
 
 
 
