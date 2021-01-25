@@ -7,7 +7,7 @@
 #### Predicting Cars Prices
 
 
-[![Made with Jupyter](https://img.shields.io/badge/Made%20with-Jupyter-orange?style=for-the-badge&logo=Jupyter)](https://htmlpreview.github.io/?https://github.com/vkaylyn/vkaylyn.github.io/blob/main/Cars.html)
+[![Made with Jupyter](https://img.shields.io/badge/Made%20with-Jupyter-orange?style=for-the-badge&logo=Jupyter)](http://htmlpreview.github.io/?https://github.com/vkaylyn/vkaylyn.github.io/blob/main/projects/Cars.html)
 
 
 ---
@@ -29,7 +29,6 @@
 <img src="images/PCA.png?raw=true"/>
 
 
-
 [![](https://img.shields.io/badge/GitHub-View_on_GitHub-EE4C2C?logo=GitHub)](https://github.com/vkaylyn/vkaylyn.github.io/blob/main/projects/Multivariate%20Analysis%20of%20Organic%20Contaminants%20in%20Salmon.pdf)
 
 #### Diagnostics
@@ -45,6 +44,17 @@
 #### Using Time Series to Indirectly Predict Weather Patterns
 
 [![Made with R](https://img.shields.io/badge/Made%20with-R-blue?style=for-the-badge&logo=R)](http://htmlpreview.github.io/?https://github.com/vkaylyn/vkaylyn.github.io/blob/main/projects/Deposits.html)
+
+---
+
+
+### Design and Analysis of Experiments
+
+#### On the Rise of Bread: Which Variables Contribute To The Height Of A Bread?
+
+<img src="images/bread_diagram.png?raw=true"/>
+
+[![](https://img.shields.io/badge/GitHub-View_on_GitHub-EE4C2C?logo=GitHub)](https://github.com/vkaylyn/vkaylyn.github.io/blob/main/projects/Math%20261B%20Final%20Project.pdf)
 
 ---
 
