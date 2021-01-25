@@ -5,7 +5,7 @@ logo: "/images/picture.png?raw=true"
 description: > # your text below (remove <br> elements if you don't need line breaks)
   I am a second year Master's Student of Statistics at San Jose State University.
   <br><br>
-  <a href="https://www.linkedin.com/in/example/">View My LinkedIn Profile</a> 
+  <a href="https://www.linkedin.com/in/example/"a> 
   
 theme: jekyll-theme-minimal
 google_analytics: UA-000000-0 # your Google Analytics tracking ID here
