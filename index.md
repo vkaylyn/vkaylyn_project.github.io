@@ -14,6 +14,7 @@
 #### Predicting House Prices with Machine Learning Techniques
 
 <img src="images/housesbanner.png?raw=true"/>
+Credit: kaggle.com
 
 
 [![Made with Jupyter](https://img.shields.io/badge/Made%20with-Jupyter-orange?style=for-the-badge&logo=Jupyter)](https://htmlpreview.github.io/?https://github.com/vkaylyn/vkaylyn.github.io/blob/main/projects/regression.html)
@@ -53,6 +54,7 @@
 #### On the Rise of Bread: Which Variables Contribute To The Height Of A Bread?
 
 <img src="images/bread_diagram.png?raw=true"/>
+Credit: thebreadmaiden.com
 
 [![](https://img.shields.io/badge/GitHub-View_on_GitHub-EE4C2C?logo=GitHub)](https://github.com/vkaylyn/vkaylyn.github.io/blob/main/projects/Math%20261B%20Final%20Project.pdf)
 
