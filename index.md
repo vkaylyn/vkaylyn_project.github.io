@@ -68,7 +68,8 @@ Credit: thebreadmaiden.com
 <img src="images/drybeanpic.jpg"/>
 Credit: Murat Koklu and Ilker Ali Ozkan
 
-[![](https://img.shields.io/badge/MATLAB-View_on_GitHub-EE4C2C?logo=MATLAB)]
+
+[![Made with MATLAB](https://img.shields.io/badge/GitHub-View_on_GitHub-EE4C2C?logo=MATLAB)]
 (https://github.com/vkaylyn/vkaylyn.github.io/blob/main/projects/Math%20250%20Paper.pdf)
 
 ---
