@@ -60,6 +60,19 @@ Credit: thebreadmaiden.com
 
 ---
 
+
+### Mathematical Methods for Data Visualization
+
+#### Dry Bean Data Visualization
+
+<img src="images/drybeanpic.jpg"/>
+Credit: Murat Koklu and Ilker Ali Ozkan
+
+[![](https://img.shields.io/badge/MATLAB-View_on_GitHub-EE4C2C?logo=MATLAB)]
+(https://github.com/vkaylyn/vkaylyn.github.io/blob/main/projects/Math%20250%20Paper.pdf)
+
+---
+
 ### Miscellaneous Projects
 
 #### DATA SCIENCE FOR GOOD: PASSNYC
